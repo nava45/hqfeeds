@@ -1,4 +1,4 @@
-from ..feed_models import *
+from feed_models import *
 from datetime import datetime
 from tasks.read_update_feed import check_and_parse_feed
 import logging

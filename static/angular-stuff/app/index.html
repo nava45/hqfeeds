@@ -3,7 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
@@ -12,58 +12,49 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="/static/angular-stuff/app/styles/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/angular-stuff/app/styles/main.css">
     <!-- endbuild -->
-</head>
-<body class="fill" ng-app="stockMarketApp">
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
+  </head>
+  <body class="fill" ng-app="hqFeeds">
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
 
-<!--[if lt IE 9]>
-<script src="scripts/vendors/es5-shim.js"></script>
-<script src="scripts/vendors/json3.min.js"></script>
-<![endif]-->
+    <!--[if lt IE 9]>
+        <script src="/static/angular-stuff/app/scripts/vendors/es5-shim.js"></script>
+        <script src="/static/angular-stuff/app/scripts/vendors/json3.min.js"></script>
+        <![endif]-->
 
-<div ng-controller="AppCtrl as appCtrl">
-    <div class="alert alert-info" ng-show="appCtrl.alertService.get()" ng-bind="appCtrl.alertService.get()"></div>
-    <div class="container-fluid" style="margin-bottom: 15px;">
-        <div class="span12 row-fluid">
-            <div ng-include src="'views/top_nav.html'"></div>
+    <div>
+      <div class="container" style="margin-bottom: 15px;">
+        <div class="row">
+          <div ng-include src="'/static/angular-stuff/app/views/top_nav.html'"></div>
         </div>
+      </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-2"><div ng-include src="'views/feeds_info.html'">
-    </div></div>
-    <div class="col-md-10">    <section ui-view=""></section>
+    <div class="row">
+      <div class="col-md-2">
+        <div ng-include src="'/static/angular-stuff/app/views/feeds_info.html'">
+        </div>
+      </div>
+      <div class="col-md-10">    
+        <section ui-view=""></section>
+      </div>
+    </div>
 
-    </div></div>
-</div>
-</div>
+    <script src="/static/angular-stuff/app/scripts/vendors/jquery.js"></script>
+    <script src="/static/angular-stuff/app/scripts/vendors/angular.js"></script>
+    <script src="/static/angular-stuff/app/scripts/vendors/angular-route.js"></script>
+    <script src="/static/angular-stuff/app/scripts/vendors/angular-animate.js"></script>
+    <script src="/static/angular-stuff/app/scripts/vendors/angular-ui-router.js"></script>
+    <script src="/static/angular-stuff/app/scripts/vendors/checklist-model.js"></script>
+    <script src="/static/angular-stuff/app/scripts/vendors/ui-bootstrap-tpls-0.10.0.min.js"></script>
 
-<script src="scripts/vendors/jquery.js"></script>
-<script src="scripts/vendors/jquery.js"></script>
-<script src="scripts/vendors/jquery-ui-1.10.2.custom.js"></script>
-<script src="scripts/vendors/angular.js"></script>
-<script src="scripts/vendors/bootstrap.js"></script>
-<script src="scripts/vendors/angular-route.js"></script>
-<script src="scripts/vendors/angular-animate.js"></script>
-<script src="scripts/vendors/angular-ui-router.js"></script>
-<script src="scripts/vendors/checklist-model.js"></script>
-<script src="scripts/ui-bootstrap-tpls-0.10.0.min.js"></script>
-
-<!-- build:js scripts/plugins.js -->
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers.js"></script>
-<script src="scripts/services.js"></script>
-<script src="scripts/directives.js"></script>
-<!-- endbuild -->
-
-<!-- build:js({.tmp,app}) scripts/scripts.js -->
-<!-- endbuild -->
-
-</body>
+    <script src="/static/angular-stuff/app/scripts/app.js"></script>
+    <script src="/static/angular-stuff/app/scripts/controllers.js"></script>
+    <script src="/static/angular-stuff/app/scripts/services.js"></script>
+    <script src="/static/angular-stuff/app/scripts/directives.js"></script>
+  </body>
 </html>

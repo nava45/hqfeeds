@@ -72,11 +72,13 @@ def get_access_token():
     return session.get('access_token')
 
 
-@app.route('/', methods=['GET'])
-#@login_required
-def data_index():
-    return redirect(url_for('view_feed_entries'))
-
+# @app.route('/', methods=['GET'])
+# #@login_required
+# def data_index():
+#     return redirect(url_for('view_feed_entries'))
+@app.route('/')
+def basic_pages(**kwargs):
+	return make_response(open('static/angular-stuff/app/index.html').read())
 
 @app.route('/get_logged_in_user_info', methods=['GET'])
 def get_user_info():
@@ -336,12 +338,17 @@ def get_feeds_for_user():
     #                    'feeds': [{'feed_label':'High Scalability', 'URI':u'http://highscalability.com/rss.xml'}]
     #                }]
     list_of_feeds_export = []
+
     for feed_label, feeds_list in list_of_feeds.iteritems():
         feed_info = {}
         feed_info['label'] = feed_label
         feed_info['feeds'] = []
         for feed in feeds_list:
-            feed_info['feeds'].append({"feed_label" : db.feeds_meta.find_one({"xmlUrl":feed})['meta_info'], "URI":feed })
+            try:
+                feed_info['feeds'].append({"feed_label" : db.feeds_meta.find_one({"xmlUrl":feed})['meta_info'], "URI":feed })
+            except:
+                import ipdb; ipdb.set_trace()
+    
         list_of_feeds_export.append(feed_info)
 
     return json.dumps(list_of_feeds_export)

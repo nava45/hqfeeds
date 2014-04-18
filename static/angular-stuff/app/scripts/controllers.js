@@ -1,18 +1,9 @@
-angular.module('stockMarketApp').controller('AppCtrl', ['AlertService', 'UserService', '$state', function(AlertService, UserService , $state) {
-        var self = this;
-        self.alertService = AlertService;
-        self.userService = UserService;
-        console.log("AppCtrl is initiated ");
-
-        self.setPage = function (page) {
-            $state.transitionTo(page);
-        };
-
-    }]).controller("TopNavCtrl", [ 'UserService', function(UserService) {
+angular.module('hqFeeds')
+    .controller("TopNavCtrl", [ 'UserService', function(UserService) {
         var self = this;
         self.loggedInUser = function() {
             return UserService.loggedInUserName();
-        }
+        };
         console.log("Top Nav Ctrl is initiated ");
     }]). controller( 'FeedsDetailsCtrl', [ 'FeedsService', '$scope', '$state', function(FeedsService, $scope) {
         var self = this;
@@ -27,13 +18,13 @@ angular.module('stockMarketApp').controller('AppCtrl', ['AlertService', 'UserSer
             FeedsService.get_feeds_details_for_uri().success( function(detailed_feeds) {
                 console.log("Detailed feeds here ", detailed_feeds);
                 self.detailed_feed_info = detailed_feeds;
-            })
+            });
         });
         FeedsService.get_feeds_details_for_uri().success( function(detailed_feeds) {
             console.log("Detailed feeds here ", detailed_feeds);
             self.detailed_feed_info = detailed_feeds;
-            self.currently_reading_label = "Top Stories "
-        })
+            self.currently_reading_label = "Top Stories ";
+        });
         console.log("Feeds Details Ctrl initiated ");
 
     }]).controller( 'FeedsInfoCtrl', [ 'FeedsService', function(FeedsService) {
@@ -43,7 +34,7 @@ angular.module('stockMarketApp').controller('AppCtrl', ['AlertService', 'UserSer
         FeedsService.get_feeds().success( function(feeds) {
             console.log(feeds);
             self.feeds_info = feeds;
-        })
+        });
 
     }]).controller( 'AddFeedCtrl', [ 'UserService', 'FeedsService','$scope', function(UserService,FeedsService,$scope) {
 
@@ -55,7 +46,7 @@ angular.module('stockMarketApp').controller('AppCtrl', ['AlertService', 'UserSer
         self.feed = {
             custom_feeds_tags: "",
             feed_url: ""
-        }
+        };
 
         FeedsService.get_feed_categories_for_user();
 
@@ -66,30 +57,6 @@ angular.module('stockMarketApp').controller('AppCtrl', ['AlertService', 'UserSer
             feed.feed_tags = feed.feed_tags.concat(feed.custom_feed_tags.split(','));
             console.log("This is feed url to be added ", feed.feed_url);
             FeedsService.add_feed_with_tags(feed);
-        }
-    }]).controller('LandingCtrl', ['StockService', function(StockService) {
-        var self = this;
-        self.stocks = [];
-        StockService.query().success(function(stocks) {
-            self.stocks = stocks;
-        });
-
-    }]).controller('AusthCtrl', ['AlertService', 'UserService', '$location', function(AlertService, UserService, $location) {
-        var self = this;
-
-        self.login = function() {
-            UserService.login(self.username, self.password).then(function(user) {
-                $location.path('/mine');
-            }, function(err) {
-                AlertService.set(err.msg);
-            });
-        };
-        self.register = function() {
-            UserService.register(self.username, self.password).then(function(user) {
-                $location.path('/mine');
-            }, function(err) {
-                AlertService.set(err.data.msg);
-            });
         };
     }]).controller('MyStocksCtrl', ['StockService', function(StockService) {
         var self = this;

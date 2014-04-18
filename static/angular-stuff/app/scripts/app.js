@@ -1,28 +1,28 @@
-angular.module('stockMarketApp', ['ui.bootstrap','ui.router', "checklist-model"])
-  .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,$urlRouterProvider) {
-
-      var home= {
-            name:'home',
-            url:'/',
-            templateUrl:"views/feed_details.html"
-          },
-          add_feed = {
-              name:'add_feed',
-              url: '/feed',
-              templateUrl: "views/add_feed.html"
-          },
-          import_opml = {
-              name:'import_opml',
-              url: '/opml',
-              templateUrl: "views/import_opml.html"
-          }
-      $stateProvider.state(home);
-      $stateProvider.state(add_feed);
-      $stateProvider.state(import_opml);
+angular.module('hqFeeds', ['ui.bootstrap','ui.router', "checklist-model"])
+    .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider,$urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
+        var home = {
+                name:'home',
+                url:'/',
+                templateUrl:"/static/angular-stuff/app/views/feed_details.html"
+            },
+            add_feed = {
+                name:'add_feed',
+                url: '/feed',
+                templateUrl: "/static/angular-stuff/app/views/add_feed.html"
+            },
+            import_opml = {
+                name:'import_opml',
+                url: '/opml',
+                templateUrl: "/static/angular-stuff/app/views/import_opml.html"
+            };
+        $stateProvider.state(home);
+        $stateProvider.state(add_feed);
+        $stateProvider.state(import_opml);
     }])
     .run(['$state', function ($state) {
         $state.transitionTo('home');
-    }])
+    }]);
 
 //      .when('/', {
 //      templateUrl: 'views/hqFeeds.html',
